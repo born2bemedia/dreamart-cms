@@ -72,6 +72,8 @@ export interface Config {
     media: Media;
     trends: Trend;
     policies: Policy;
+    'pricing-categories': PricingCategory;
+    'pricing-packages': PricingPackage;
     users: User;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -84,6 +86,8 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     trends: TrendsSelect<false> | TrendsSelect<true>;
     policies: PoliciesSelect<false> | PoliciesSelect<true>;
+    'pricing-categories': PricingCategoriesSelect<false> | PricingCategoriesSelect<true>;
+    'pricing-packages': PricingPackagesSelect<false> | PricingPackagesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -253,6 +257,38 @@ export interface Policy {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pricing-categories".
+ */
+export interface PricingCategory {
+  id: number;
+  title: string;
+  slug?: string | null;
+  description?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pricing-packages".
+ */
+export interface PricingPackage {
+  id: number;
+  title: string;
+  slug?: string | null;
+  description?: string | null;
+  category?: (number | null) | PricingCategory;
+  price?: number | null;
+  includes?:
+    | {
+        feature?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -311,6 +347,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'policies';
         value: number | Policy;
+      } | null)
+    | ({
+        relationTo: 'pricing-categories';
+        value: number | PricingCategory;
+      } | null)
+    | ({
+        relationTo: 'pricing-packages';
+        value: number | PricingPackage;
       } | null)
     | ({
         relationTo: 'users';
@@ -438,6 +482,36 @@ export interface PoliciesSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
   content?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pricing-categories_select".
+ */
+export interface PricingCategoriesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pricing-packages_select".
+ */
+export interface PricingPackagesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  description?: T;
+  category?: T;
+  price?: T;
+  includes?:
+    | T
+    | {
+        feature?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }

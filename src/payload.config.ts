@@ -13,6 +13,8 @@ import { Categories } from './collections/Categories'
 import { Trends } from './collections/Trends'
 import { Policies } from './collections/Policies'
 import { Products } from './collections/Products'
+import { PricingCategories } from './collections/PricingCategories'
+import { PricingPackages } from './collections/PricingPackages'
 
 import { s3Storage } from '@payloadcms/storage-s3'
 
@@ -26,7 +28,16 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Products, Categories, Media, Trends, Policies, Users],
+  collections: [
+    Products,
+    Categories,
+    Media,
+    Trends,
+    Policies,
+    PricingCategories,
+    PricingPackages,
+    Users,
+  ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
