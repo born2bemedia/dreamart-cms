@@ -12,6 +12,7 @@ import { Media } from './collections/Media'
 import { Categories } from './collections/Categories'
 import { Trends } from './collections/Trends'
 import { Policies } from './collections/Policies'
+import { Products } from './collections/Products'
 
 import { s3Storage } from '@payloadcms/storage-s3'
 
@@ -25,7 +26,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Categories, Trends, Policies],
+  collections: [Products, Categories, Media, Trends, Policies, Users],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
