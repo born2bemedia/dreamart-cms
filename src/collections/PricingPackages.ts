@@ -68,5 +68,12 @@ export const PricingPackages: CollectionConfig = {
         },
       ],
     },
+    {
+      name: 'button_text',
+      type: 'text',
+      label: 'Button Text',
+      required: false,
+      localized: true,
+    },
   ],
 }

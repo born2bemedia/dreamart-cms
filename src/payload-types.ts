@@ -284,6 +284,7 @@ export interface PricingPackage {
         id?: string | null;
       }[]
     | null;
+  button_text?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -512,6 +513,7 @@ export interface PricingPackagesSelect<T extends boolean = true> {
         feature?: T;
         id?: T;
       };
+  button_text?: T;
   updatedAt?: T;
   createdAt?: T;
 }
