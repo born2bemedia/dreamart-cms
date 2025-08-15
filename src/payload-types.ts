@@ -128,7 +128,7 @@ export interface UserAuthOperations {
 export interface Product {
   id: number;
   title: string;
-  slug?: string | null;
+  slug: string;
   image?: (number | null) | Media;
   price?: number | null;
   category?: (number | null) | Category;

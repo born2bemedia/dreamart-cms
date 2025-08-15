@@ -25,12 +25,33 @@ export const Products: CollectionConfig = {
       type: 'text',
       label: 'Slug',
       unique: true,
+      required: true,
       hooks: {
         beforeChange: [
-          async ({ data }) => {
+          async ({ data, req, operation }) => {
             if (data?.title) {
-              return slugify(data.title, { lower: true, strict: true })
+              let baseSlug = slugify(data.title, { lower: true, strict: true })
+
+              // If this is a duplicate operation, make the slug unique
+              if (operation === 'create' && data.slug) {
+                // Check if slug already exists and append a number
+                const existingDocs = await req.payload.find({
+                  collection: 'products',
+                  where: {
+                    slug: {
+                      like: baseSlug,
+                    },
+                  },
+                })
+
+                if (existingDocs.docs.length > 0) {
+                  baseSlug = `${baseSlug}-${Date.now()}`
+                }
+              }
+
+              return baseSlug
             }
+            return data?.slug
           },
         ],
       },
