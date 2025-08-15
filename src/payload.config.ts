@@ -15,6 +15,7 @@ import { Policies } from './collections/Policies'
 import { Products } from './collections/Products'
 import { PricingCategories } from './collections/PricingCategories'
 import { PricingPackages } from './collections/PricingPackages'
+import { Orders } from './collections/Orders'
 
 import { s3Storage } from '@payloadcms/storage-s3'
 
@@ -29,6 +30,7 @@ export default buildConfig({
     },
   },
   collections: [
+    Orders,
     Products,
     Categories,
     Media,
