@@ -118,8 +118,94 @@ export const Products: CollectionConfig = {
         },
       ],
     },
+
+    {
+      name: 'deal_title',
+      type: 'text',
+      label: 'Deal Title',
+      required: false,
+      localized: true,
+      admin: {
+        condition: (data, siblingData, { blockData, path, user }) => {
+          if (data?.category === 6) {
+            return true
+          }
+          return false
+        },
+      },
+    },
+    {
+      name: 'deal_discount',
+      type: 'number',
+      label: 'Deal Discount',
+      required: false,
+      admin: {
+        condition: (data, siblingData, { blockData, path, user }) => {
+          if (data?.category === 6) {
+            return true
+          }
+          return false
+        },
+      },
+    },
+    {
+      name: 'deal_old_price',
+      type: 'number',
+      label: 'Deal Old Price',
+      required: false,
+      admin: {
+        condition: (data, siblingData, { blockData, path, user }) => {
+          if (data?.category === 6) {
+            return true
+          }
+          return false
+        },
+      },
+    },
+    {
+      name: 'includes',
+      type: 'array',
+      label: 'Includes',
+      localized: true,
+      fields: [
+        {
+          name: 'model',
+          type: 'text',
+          label: 'Model',
+          localized: true,
+        },
+      ],
+      admin: {
+        condition: (data, siblingData, { blockData, path, user }) => {
+          if (data?.category === 6) {
+            return true
+          }
+          return false
+        },
+      },
+    },
+    {
+      name: 'button_text',
+      type: 'text',
+      label: 'Button Text',
+      required: false,
+      localized: true,
+      admin: {
+        condition: (data, siblingData, { blockData, path, user }) => {
+          if (data?.category === 6) {
+            return true
+          }
+          return false
+        },
+      },
+    },
   ],
   hooks: {
+    afterChange: [
+      async ({ doc }) => {
+        console.log(doc)
+      },
+    ],
     /*afterChange: [
       async ({ doc }) => {
         try {

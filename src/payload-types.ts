@@ -231,6 +231,16 @@ export interface Product {
         id?: string | null;
       }[]
     | null;
+  deal_title?: string | null;
+  deal_discount?: number | null;
+  deal_old_price?: number | null;
+  includes?:
+    | {
+        model?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  button_text?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -500,6 +510,16 @@ export interface ProductsSelect<T extends boolean = true> {
         fileurl?: T;
         id?: T;
       };
+  deal_title?: T;
+  deal_discount?: T;
+  deal_old_price?: T;
+  includes?:
+    | T
+    | {
+        model?: T;
+        id?: T;
+      };
+  button_text?: T;
   updatedAt?: T;
   createdAt?: T;
 }
