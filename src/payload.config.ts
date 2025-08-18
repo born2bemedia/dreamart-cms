@@ -49,6 +49,9 @@ export default buildConfig({
     locales: ['en', 'de', 'it'],
     defaultLocale: 'en',
   },
+  cors: {
+    origins: [`${process.env.LOCAL_FRONT_URL}`, `${process.env.WEB_FRONT_URL}`],
+  },
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI || '',
