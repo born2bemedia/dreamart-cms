@@ -6,6 +6,7 @@ import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
+import nodemailerSendgrid from 'nodemailer-sendgrid'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
@@ -18,6 +19,7 @@ import { PricingPackages } from './collections/PricingPackages'
 import { Orders } from './collections/Orders'
 
 import { s3Storage } from '@payloadcms/storage-s3'
+import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -77,4 +79,11 @@ export default buildConfig({
       },
     }),
   ],
+  email: nodemailerAdapter({
+    defaultFromName: 'Dreamart 3D',
+    defaultFromAddress: 'noreply@dreamart3d.com',
+    transportOptions: nodemailerSendgrid({
+      apiKey: process.env.SENDGRID_API_KEY ?? '',
+    }),
+  }),
 })
