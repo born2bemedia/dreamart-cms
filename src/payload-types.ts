@@ -170,6 +170,7 @@ export interface User {
   id: number;
   firstName: string;
   lastName: string;
+  username?: string | null;
   phone?: string | null;
   address1?: string | null;
   address2?: string | null;
@@ -621,6 +622,7 @@ export interface PricingPackagesSelect<T extends boolean = true> {
 export interface UsersSelect<T extends boolean = true> {
   firstName?: T;
   lastName?: T;
+  username?: T;
   phone?: T;
   address1?: T;
   address2?: T;
