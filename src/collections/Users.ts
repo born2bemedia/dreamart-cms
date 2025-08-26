@@ -8,11 +8,16 @@ export const Users: CollectionConfig = {
   auth: {
     forgotPassword: {
       generateEmailHTML: (args?: { token?: string }) => {
-        const token = args?.token
-        if (!token) {
-          return `<p>Error: No reset token provided.</p>`
-        }
-        return `<a href="${process.env.WEB_FRONT_URL}/set-password?token=${token}">Reset</a>`
+        const resetLink = `${process.env.WEB_FRONT_URL}/forgot-password?token=${args?.token}`
+
+        return `
+          <div style="font-family: sans-serif; line-height: 1.5;">
+            <h2>Password Reset Request</h2>
+            <p>You requested a password reset. Click the button below to reset your password.</p>
+            <p><a href="${resetLink}" style="display: inline-block; background-color: white; color: black; padding: 16px 24px; text-decoration: none; border: 1px solid black;">Reset Password</a></p>
+            <p>If you didn’t request this, just ignore this email.</p>
+          </div>
+        `
       },
     },
   },
