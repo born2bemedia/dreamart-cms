@@ -209,7 +209,7 @@ export interface Product {
   price?: number | null;
   category?: (number | null) | Category;
   preview?: (number | null) | Media;
-  excerpt: string;
+  excerpt?: string | null;
   content?: {
     root: {
       type: string;

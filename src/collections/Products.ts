@@ -92,12 +92,13 @@ export const Products: CollectionConfig = {
       name: 'excerpt',
       type: 'textarea',
       label: 'Excerpt',
-      required: true,
+      localized: true,
     },
     {
       name: 'content',
       type: 'richText',
       label: 'Content',
+      localized: true,
     },
     {
       name: 'filesurl',
