@@ -60,6 +60,7 @@ export const PricingPackages: CollectionConfig = {
       name: 'includes',
       type: 'array',
       label: 'Includes',
+      localized: true,
       fields: [
         {
           name: 'feature',
